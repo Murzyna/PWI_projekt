@@ -4,7 +4,7 @@ import numpy as np
 
 class ChessBoard:
 
-    board = np.zeros((8,8))
+    board = np.zeros((8,8), classmethod)
 
     def __init__(self, size, colors, screen):
         self.size = size
