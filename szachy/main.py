@@ -1,9 +1,10 @@
 import pygame as pg
+import numpy as np
 
 pg.init()
 
-width = 800
-height = 800
+width = 1024
+height = 1024
 
 screen = pg.display.set_mode((width, height))
 pg.display.set_caption("Szachy")
