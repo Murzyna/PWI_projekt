@@ -1,5 +1,12 @@
 import pygame as pg
 import numpy as np
+from pieces.pawn import *
+from pieces.rook import *
+from pieces.king import *
+from pieces.queen import *
+from pieces.bishop import *
+from pieces.knight import *
+
 
 
 class ChessBoard:
