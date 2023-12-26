@@ -4,14 +4,13 @@ from game.board import *
 
 pg.init()
 
-width = 800
-height = 800
+screen_size = 800
 
-screen = pg.display.set_mode((width, height))
+screen = pg.display.set_mode((screen_size, screen_size))
 pg.display.set_caption("Szachy")
 white = (255, 220, 178)
 brown = (205, 133, 63)
-board = ChessBoard(width, (white, brown), screen)
+board = ChessBoard(screen_size, (white, brown), screen)
 
 
 def main():
