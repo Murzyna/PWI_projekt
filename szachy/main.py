@@ -11,11 +11,12 @@ screen = pg.display.set_mode((width, height))
 pg.display.set_caption("Szachy")
 white = (255, 220, 178)
 brown = (205, 133, 63)
-board = ChessBoard(width, (white, brown))
+board = ChessBoard(width, (white, brown), screen)
 
 
 def main():
-    pass
+
+    board.draw_board()
 
 
 while True:
