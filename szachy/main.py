@@ -1,6 +1,6 @@
 import pygame as pg
 
-pygame.init()
+pg.init()
 
 width = 800
 height = 800
