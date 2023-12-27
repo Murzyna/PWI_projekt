@@ -8,21 +8,30 @@ class Rook(Piece):
     b_image = pg.image.load('assets/pieces/bR.png')
 
     def possible_moves_f(self, board):
-        self.possible_moves = np.empty((0, 2), dtype=int)
         y, x = self.pos
 
-        # Define the directions to check (horizontal and vertical)
-        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+        # Define the directions to check (vertical and horizontal)
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        max_possible_moves = 14  # Maksymalna liczba potencjalnych ruchów wieży
+        possible_moves_array = np.full((max_possible_moves, 2), -1, dtype=int)
+
+        count_moves = 0
 
         for dy, dx in directions:
             i, j = y + dy, x + dx
             while 0 <= i < 8 and 0 <= j < 8:
                 if board[i][j] == 0:
-                    self.possible_moves = np.append(self.possible_moves, np.array([[i, j]]), axis=0)
+                    possible_moves_array[count_moves] = [i, j]
+                    count_moves += 1
                 elif board[i][j].color == self.color:
                     break
                 else:
-                    self.possible_moves = np.append(self.possible_moves, np.array([[i, j]]), axis=0)
+                    possible_moves_array[count_moves] = [i, j]
+                    count_moves += 1
                     break
                 i += dy
                 j += dx
+
+        # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
+        self.possible_moves = possible_moves_array[:count_moves]

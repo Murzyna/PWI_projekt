@@ -8,14 +8,20 @@ class Knight(Piece):
     b_image = pg.image.load('assets/pieces/bN.png')
 
     def possible_moves_f(self, board):
-        self.possible_moves = np.empty((0, 2), dtype=int)
         y, x = self.pos
 
         rows = [2, 2, -2, -2, 1, 1, -1, -1]
         cols = [1, -1, 1, -1, 2, -2, 2, -2]
 
+        max_possible_moves = 8  # Maksymalna liczba potencjalnych ruchów skoczka
+        possible_moves_array = np.full((max_possible_moves, 2), -1, dtype=int)
+
+        count_moves = 0
+
         for i in range(8):
             new_x, new_y = x + rows[i], y + cols[i]
-            if 0 <= new_x < 8 and 0 <= new_y < 8:
-                if board[new_x][new_y] == 0 or board[new_x][new_y].color != self.color:
-                    self.possible_moves = np.append(self.possible_moves, np.array([[new_x, new_y]]), axis=0)
+            if 0 <= new_x < 8 and 0 <= new_y < 8 and (board[new_y][new_x] == 0 or board[new_y][new_x].color != self.color):
+                possible_moves_array[count_moves] = [new_y, new_x]
+                count_moves += 1
+
+        self.possible_moves = possible_moves_array[:count_moves]
