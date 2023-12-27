@@ -15,7 +15,7 @@ class Rook(Piece):
             if board[y][i] == 0:
                 self.possible_moves[index] = [y, i]
                 index += 1
-            elif board[y][i] == self.color:
+            elif board[y][i].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [y, i]
@@ -25,7 +25,7 @@ class Rook(Piece):
             if board[y][i] == 0:
                 self.possible_moves[index] = [y, i]
                 index += 1
-            elif board[y][i] == self.color:
+            elif board[y][i].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [y, i]
@@ -35,7 +35,7 @@ class Rook(Piece):
             if board[i][x] == 0:
                 self.possible_moves[index] = [i, x]
                 index += 1
-            elif board[i][x] == self.color:
+            elif board[i][x].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, x]
@@ -45,7 +45,7 @@ class Rook(Piece):
             if board[i][x] == 0:
                 self.possible_moves[index] = [i, x]
                 index += 1
-            elif board[i][x] == self.color:
+            elif board[i][x].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, x]

@@ -15,7 +15,7 @@ class Queen(Piece):
             if board[y][i] == 0:
                 self.possible_moves[index] = [y, i]
                 index += 1
-            elif board[y][i] == self.color:
+            elif board[y][i].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [y, i]
@@ -25,7 +25,7 @@ class Queen(Piece):
             if board[y][i] == 0:
                 self.possible_moves[index] = [y, i]
                 index += 1
-            elif board[y][i] == self.color:
+            elif board[y][i].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [y, i]
@@ -35,7 +35,7 @@ class Queen(Piece):
             if board[i][x] == 0:
                 self.possible_moves[index] = [i, x]
                 index += 1
-            elif board[i][x] == self.color:
+            elif board[i][x].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, x]
@@ -45,7 +45,7 @@ class Queen(Piece):
             if board[i][x] == 0:
                 self.possible_moves[index] = [i, x]
                 index += 1
-            elif board[i][x] == self.color:
+            elif board[i][x].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, x]
@@ -58,7 +58,7 @@ class Queen(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -71,7 +71,7 @@ class Queen(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -84,7 +84,7 @@ class Queen(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -97,7 +97,7 @@ class Queen(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]

@@ -18,7 +18,7 @@ class Bishop(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -31,7 +31,7 @@ class Bishop(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -44,7 +44,7 @@ class Bishop(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
@@ -57,7 +57,7 @@ class Bishop(Piece):
             if board[i][j] == 0:
                 self.possible_moves[index] = [i, j]
                 index += 1
-            elif board[i][j] == self.color:
+            elif board[i][j].color == self.color:
                 break
             else:
                 self.possible_moves[index] = [i, j]
