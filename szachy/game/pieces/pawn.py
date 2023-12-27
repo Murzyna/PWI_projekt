@@ -10,6 +10,7 @@ class Pawn(Piece):
     def __init__(self, color, pos, size):
         super().__init__(color, pos, size)
         self.first_move = True
+        self.starting_pos = pos
 
     def possible_moves_f(self, board):
         y, x = self.pos
@@ -19,43 +20,42 @@ class Pawn(Piece):
 
         count_moves = 0
 
+        if self.starting_pos != self.pos:
+            self.first_move = False
+
         if self.color == "w":
-            if board[y-1][x] == 0:              # ruch do przodu
-                self.first_move = False
-                possible_moves_array[count_moves] = [y-1, x]
-                count_moves += 1
-            if 0<y<8 and 0<=x<8 and board[y-1][x+1] != 0 and board[y-1][x+1].color != self.color:       # bicie na ukos
-                self.first_move = False
-                possible_moves_array[count_moves] = [y-1, x+1]
-                count_moves += 1
-            if 0<y<8 and 0<x<=8 and board[y-1][x-1] != 0 and board[y-1][x-1].color != self.color:       # bicie na ukos
-                self.first_move = False
-                possible_moves_array[count_moves] = [y-1, x-1]
-                count_moves += 1
             if self.first_move and board[y-2][x] == 0:
-                self.first_move = False
                 possible_moves_array[count_moves] = [y-2, x]
                 count_moves += 1
 
+            if board[y-1][x] == 0:              # ruch do przodu
+                possible_moves_array[count_moves] = [y-1, x]
+                count_moves += 1
+
+            if 0<y<8 and 0<=x<8 and board[y-1][x+1] != 0 and board[y-1][x+1].color != self.color:       # bicie na ukos
+                possible_moves_array[count_moves] = [y-1, x+1]
+                count_moves += 1
+
+            if 0<y<8 and 0<x<=8 and board[y-1][x-1] != 0 and board[y-1][x-1].color != self.color:       # bicie na ukos
+                possible_moves_array[count_moves] = [y-1, x-1]
+                count_moves += 1
+
+
         if self.color == "b":
+            if self.first_move and board[y+2][x] == 0:
+                possible_moves_array[count_moves] = [y+2, x]
+                count_moves += 1
+
             if board[y+1][x] == 0:              # ruch do przodu
-                self.first_move = False
                 possible_moves_array[count_moves] = [y+1, x]
                 count_moves += 1
 
             if 0<y<8 and 0<=x<8 and board[y+1][x+1] != 0 and board[y+1][x+1].color != self.color:       # bicie na ukos
-                self.first_move = False
                 possible_moves_array[count_moves] = [y+1, x+1]
                 count_moves += 1
 
             if 0<y<8 and 0<x<=8 and board[y+1][x-1] != 0 and board[y+1][x-1].color != self.color:       # bicie na ukos
-                self.first_move = False
                 possible_moves_array[count_moves] = [y+1, x-1]
-                count_moves += 1
-
-            if self.first_move and board[y+2][x] == 0:
-                self.first_move = False
-                possible_moves_array[count_moves] = [y+2, x]
                 count_moves += 1
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów

@@ -45,41 +45,49 @@ class ChessBoard:
         if pg.mouse.get_pressed()[0] is False:
             ChessBoard.mouse_hold = False
 
-        if self.piece_to_move is None:
-            for i in range(8):
-                for j in range(8):
-                    piece = ChessBoard.board[i][j]
-                    if piece != 0:
-                        if piece.is_clicked() and ChessBoard.mouse_hold is False and piece.color == ChessBoard.turn:
-                            self.piece_to_move = (piece, i, j)      # zapisywanie figury ktorą chcemy ruszyc
-                            ChessBoard.mouse_hold = True
-                            break
+        if pg.mouse.get_pressed()[0] and ChessBoard.mouse_hold is False:
+            mouse_pos_i = pg.mouse.get_pos()[1] // 100
+            mouse_pos_j = pg.mouse.get_pos()[0] // 100
+            self.piece_to_move = (ChessBoard.board[mouse_pos_i][mouse_pos_j], mouse_pos_i, mouse_pos_j)
+            ChessBoard.mouse_hold = True
 
-        if self.piece_to_move is not None and ChessBoard.mouse_hold is False:       # zmiana pozycji figur
+
+        if self.piece_to_move is not None and ChessBoard.mouse_hold is False and self.piece_to_move[0].color == ChessBoard.turn:       # zmiana pozycji figur
             piece_to_move = self.piece_to_move[0]
             old_pos_i = self.piece_to_move[1]
             old_pos_j = self.piece_to_move[2]
-
             new_pos_i = pg.mouse.get_pos()[1]//100
             new_pos_j = pg.mouse.get_pos()[0]//100
 
-            piece_to_move.pos = (new_pos_i, new_pos_j)
 
-            if old_pos_i == new_pos_i and old_pos_j == new_pos_j:
+            new_pos = np.array([new_pos_i, new_pos_j])
+            piece_to_move.possible_moves_f(ChessBoard.board)
+            a = 0
+            for pos in piece_to_move.possible_moves:
+                if pos[0] == new_pos[0] and pos[1] == new_pos[1]:       # sprawdzainie czy to dobry ruch
+                    a = 1
+                    break
+            if a == 0:
+                self.piece_to_move = None
                 return 0
 
+
+            if old_pos_i == new_pos_i and old_pos_j == new_pos_j:
+                self.piece_to_move = None
+                return 0
+
+
+            piece_to_move.pos = (new_pos_i, new_pos_j)
             ChessBoard.board[old_pos_i][old_pos_j] = 0
             ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
-
             if ChessBoard.turn == "w":
                 ChessBoard.turn = "b"
             else:
                 ChessBoard.turn = "w"
 
-            piece_to_move.possible_moves_f(ChessBoard.board)
-            print(piece_to_move.possible_moves)
 
             self.piece_to_move = None
+
 
 
 
