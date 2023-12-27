@@ -4,10 +4,11 @@ import numpy as np
 
 class Piece:
 
-    def __init__(self, color, pos, size):
+    def __init__(self, color, pos, size, possible_moves):
         self.color = color
         self.pos = pos
         self.size = size
+        self.possible_moves = possible_moves
 
     def draw_piece(self, screen, w_image, b_image):
         w_scaled_image = pg.transform.scale(w_image, (self.size, self.size))
