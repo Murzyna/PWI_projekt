@@ -14,7 +14,7 @@ class Knight(Piece):
         y = self.pos[1]
         x = self.pos[0]
         for i in range(8):
-            if x + rows[i] < 0 or x + rows > 7 or y + cols[i] < 0 or y + cols > 7:
+            if x + rows[i] < 0 or x + rows[i] > 7 or y + cols[i] < 0 or y + cols[i] > 7:
                 continue
             else:
                 if board[x + rows[i]][y + cols[i]] != 0:
