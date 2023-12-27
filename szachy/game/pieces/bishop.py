@@ -11,8 +11,9 @@ class Bishop(Piece):
         index = 0
         y = self.pos[0]
         x = self.pos[1]
+        j = x
         for i in range(y - 1, -1, -1):
-            j = x + 1
+            j += 1
             if j == 8:
                 break
             if board[i][j] == 0:
@@ -24,8 +25,9 @@ class Bishop(Piece):
                 self.possible_moves[index] = [i, j]
                 index += 1
                 break
+        j = x
         for i in range(y - 1, -1, -1):
-            j = x - 1
+            j -= 1
             if j == -1:
                 break
             if board[i][j] == 0:
@@ -37,8 +39,9 @@ class Bishop(Piece):
                 self.possible_moves[index] = [i, j]
                 index += 1
                 break
+        j = x
         for i in range(y + 1, 8):
-            j = x + 1
+            j += 1
             if j == 8:
                 break
             if board[i][j] == 0:
@@ -50,8 +53,9 @@ class Bishop(Piece):
                 self.possible_moves[index] = [i, j]
                 index += 1
                 break
+        j = x
         for i in range(y + 1, 8):
-            j = x - 1
+            j -= 1
             if j == 0:
                 break
             if board[i][j] == 0:
