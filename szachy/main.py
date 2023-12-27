@@ -19,6 +19,7 @@ def main():
     board.draw_board()
     highlight(screen)
     board.draw_pieces()
+    board.move_piece()
 
 
 while True:
