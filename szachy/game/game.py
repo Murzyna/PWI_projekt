@@ -11,3 +11,4 @@ def highlight(screen):
             x = np.floor(cords[0] / 100) * 100
             y = np.floor(cords[1] / 100) * 100
             target_rect = pg.draw.rect(screen, color, (x, y, 100, 100))
+            print("kutas")
