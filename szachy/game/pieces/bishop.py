@@ -7,4 +7,9 @@ class Bishop(Piece):
     w_image = pg.image.load('assets/pieces/wB.png')
     b_image = pg.image.load('assets/pieces/bB.png')
 
-    #def can_move(self, new_pos):
+    def possible_moves(self, board):
+        x = self.pos[1]
+        y = self.pos[0]
+
+
+
