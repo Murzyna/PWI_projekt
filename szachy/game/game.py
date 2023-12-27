@@ -3,7 +3,7 @@ import numpy as np
 
 
 def highlight(screen):
-    color = (50, 200, 250)
+    color = (40, 200, 250)
 
     if pg.mouse.get_pressed()[0]:
         cords = pg.mouse.get_pos()

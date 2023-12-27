@@ -10,7 +10,7 @@ screen_size = 800
 screen = pg.display.set_mode((screen_size, screen_size))
 pg.display.set_caption("Szachy")
 white = (220, 230, 255)
-brown = (135, 206, 250)
+brown = (205, 133, 63)
 board = ChessBoard(screen_size, (white, brown), screen)
 
 
