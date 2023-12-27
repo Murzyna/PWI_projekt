@@ -7,7 +7,7 @@ class Knight(Piece):
     w_image = pg.image.load('assets/pieces/wN.png')
     b_image = pg.image.load('assets/pieces/bN.png')
 
-    def possible_moves(self, board):
+    def possible_moves_f(self, board):
         index = 0
         rows = [2, 2, -2, -2, 1, 1, -1, -1]
         cols = [1, -1, 1, -1, 2, -2, 2, -2]
