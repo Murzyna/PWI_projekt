@@ -4,7 +4,7 @@ import numpy as np
 
 class Piece:
 
-    draw_adjust = 13
+    draw_adjust = 17
 
     def __init__(self, color, pos, size, possible_moves):
         self.color = color
