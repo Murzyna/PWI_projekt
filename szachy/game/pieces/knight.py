@@ -8,18 +8,14 @@ class Knight(Piece):
     b_image = pg.image.load('assets/pieces/bN.png')
 
     def possible_moves_f(self, board):
-        index = 0
+        self.possible_moves = np.empty((0, 2), dtype=int)
+        y, x = self.pos
+
         rows = [2, 2, -2, -2, 1, 1, -1, -1]
         cols = [1, -1, 1, -1, 2, -2, 2, -2]
-        y = self.pos[1]
-        x = self.pos[0]
+
         for i in range(8):
-            if x + rows[i] < 0 or x + rows[i] > 7 or y + cols[i] < 0 or y + cols[i] > 7:
-                continue
-            else:
-                if board[x + rows[i]][y + cols[i]] != 0:
-                    if board[x + rows[i]][y + cols[i]].color == self.color:
-                        continue
-                    else:
-                        self.possible_moves[index] = (x + rows[i], y + cols[i])
-                        index += 1
+            new_x, new_y = x + rows[i], y + cols[i]
+            if 0 <= new_x < 8 and 0 <= new_y < 8:
+                if board[new_x][new_y] == 0 or board[new_x][new_y].color != self.color:
+                    self.possible_moves = np.append(self.possible_moves, np.array([[new_x, new_y]]), axis=0)

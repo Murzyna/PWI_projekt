@@ -8,46 +8,21 @@ class Rook(Piece):
     b_image = pg.image.load('assets/pieces/bR.png')
 
     def possible_moves_f(self, board):
-        index = 0
-        y = self.pos[0]
-        x = self.pos[1]
-        for i in range(x + 1, 8):
-            if board[y][i] == 0:
-                self.possible_moves[index] = [y, i]
-                index += 1
-            elif board[y][i].color == self.color:
-                break
-            else:
-                self.possible_moves[index] = [y, i]
-                index += 1
-                break
-        for i in range(x - 1, -1, -1):
-            if board[y][i] == 0:
-                self.possible_moves[index] = [y, i]
-                index += 1
-            elif board[y][i].color == self.color:
-                break
-            else:
-                self.possible_moves[index] = [y, i]
-                index += 1
-                break
-        for i in range(y + 1, 8):
-            if board[i][x] == 0:
-                self.possible_moves[index] = [i, x]
-                index += 1
-            elif board[i][x].color == self.color:
-                break
-            else:
-                self.possible_moves[index] = [i, x]
-                index += 1
-                break
-        for i in range(y - 1, -1, -1):
-            if board[i][x] == 0:
-                self.possible_moves[index] = [i, x]
-                index += 1
-            elif board[i][x].color == self.color:
-                break
-            else:
-                self.possible_moves[index] = [i, x]
-                index += 1
-                break
+        self.possible_moves = np.empty((0, 2), dtype=int)
+        y, x = self.pos
+
+        # Define the directions to check (horizontal and vertical)
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0)]
+
+        for dy, dx in directions:
+            i, j = y + dy, x + dx
+            while 0 <= i < 8 and 0 <= j < 8:
+                if board[i][j] == 0:
+                    self.possible_moves = np.append(self.possible_moves, np.array([[i, j]]), axis=0)
+                elif board[i][j].color == self.color:
+                    break
+                else:
+                    self.possible_moves = np.append(self.possible_moves, np.array([[i, j]]), axis=0)
+                    break
+                i += dy
+                j += dx
