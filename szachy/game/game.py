@@ -11,6 +11,6 @@ def highlight(screen):
         y = np.floor(cords[1] / 100) * 100
         pg.draw.rect(screen, color, (x, y, 100, 100))
         clicked = True
-        print("kutas")
+        print("kutas", "chuj")
 
 
