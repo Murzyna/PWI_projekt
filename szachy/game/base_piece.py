@@ -6,11 +6,11 @@ class Piece:
 
     draw_adjust = 17
 
-    def __init__(self, color, pos, size, possible_moves):
+    def __init__(self, color, pos, size):
         self.color = color
         self.pos = pos
         self.size = size
-        self.possible_moves = possible_moves
+        self.possible_moves = None
 
     def draw_piece(self, screen, w_image, b_image):
         w_scaled_image = pg.transform.scale(w_image, (self.size, self.size))
