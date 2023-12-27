@@ -14,6 +14,7 @@ from PWI_projekt.szachy.game.game import *
 class ChessBoard:
 
     piece_size = 65
+    turn = "w"
     board = np.zeros((8,8), classmethod)
 
     def __init__(self, size, colors, screen):
@@ -41,16 +42,20 @@ class ChessBoard:
 
 
     def move_piece(self):
-        for i in range(8):
-            for j in range(8):
-                piece = ChessBoard.board[i][j]
-                if piece != 0:
-                    if piece.is_clicked() and ChessBoard.mouse_hold is False:
-                        self.piece_to_move = (piece, i, j)      # zapisywanie figury ktorą chcemy ruszyc
-                        ChessBoard.mouse_hold = True
-                        break
+        if pg.mouse.get_pressed()[0] is False:
+            ChessBoard.mouse_hold = False
 
-        if self.piece_to_move is not None and ChessBoard.mouse_hold and pg.mouse.get_pressed()[0]:
+        if self.piece_to_move is None:
+            for i in range(8):
+                for j in range(8):
+                    piece = ChessBoard.board[i][j]
+                    if piece != 0:
+                        if piece.is_clicked() and ChessBoard.mouse_hold is False and piece.color == ChessBoard.turn:
+                            self.piece_to_move = (piece, i, j)      # zapisywanie figury ktorą chcemy ruszyc
+                            ChessBoard.mouse_hold = True
+                            break
+
+        if self.piece_to_move is not None and ChessBoard.mouse_hold is False:       # zmiana pozycji figur
             piece_to_move = self.piece_to_move[0]
             old_pos_i = self.piece_to_move[1]
             old_pos_j = self.piece_to_move[2]
@@ -58,12 +63,23 @@ class ChessBoard:
             new_pos_i = pg.mouse.get_pos()[1]//100
             new_pos_j = pg.mouse.get_pos()[0]//100
 
-            if old_pos_i != new_pos_i and old_pos_j != new_pos_j:
-                ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
-                ChessBoard.board[old_pos_i][old_pos_j] = 0
+            piece_to_move.pos = (new_pos_i, new_pos_j)
 
-                self.piece_to_move = None
-                ChessBoard.mouse_hold = False
+            if old_pos_i == new_pos_i and old_pos_j == new_pos_j:
+                return 0
+
+            ChessBoard.board[old_pos_i][old_pos_j] = 0
+            ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
+
+            if ChessBoard.turn == "w":
+                ChessBoard.turn = "b"
+            else:
+                ChessBoard.turn = "w"
+
+            self.piece_to_move = None
+
+
+
 
     board[7, 4] = King("w", (7, 4), piece_size, np.zeros(8))
     board[7, 3] = Queen("w", (7, 3), piece_size, np.zeros(30))
