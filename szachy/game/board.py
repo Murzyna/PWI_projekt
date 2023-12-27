@@ -7,6 +7,7 @@ from PWI_projekt.szachy.game.pieces.queen import *
 from PWI_projekt.szachy.game.pieces.bishop import *
 from PWI_projekt.szachy.game.pieces.knight import *
 from PWI_projekt.szachy.game.base_piece import *
+from PWI_projekt.szachy.game.game import *
 
 
 

@@ -16,6 +16,7 @@ board = ChessBoard(screen_size, (white, brown), screen)
 def main():
 
     board.draw_board()
+    highlight(screen)
     board.draw_pieces()
 
 
