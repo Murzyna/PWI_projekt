@@ -16,12 +16,12 @@ class Bishop(Piece):
             if j == 8:
                 break
             if board[i][j] == 0:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
             elif board[i][j] == self.color:
                 break
             else:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
                 break
         for i in range(y - 1, -1, -1):
@@ -29,12 +29,12 @@ class Bishop(Piece):
             if j == -1:
                 break
             if board[i][j] == 0:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
             elif board[i][j] == self.color:
                 break
             else:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
                 break
         for i in range(y + 1, 8):
@@ -42,12 +42,12 @@ class Bishop(Piece):
             if j == 8:
                 break
             if board[i][j] == 0:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
             elif board[i][j] == self.color:
                 break
             else:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
                 break
         for i in range(y + 1, 8):
@@ -55,12 +55,12 @@ class Bishop(Piece):
             if j == 0:
                 break
             if board[i][j] == 0:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
             elif board[i][j] == self.color:
                 break
             else:
-                self.possible_moves[index] = (i, j)
+                self.possible_moves[index] = [i, j]
                 index += 1
                 break
 
