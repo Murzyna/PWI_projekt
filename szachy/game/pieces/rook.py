@@ -7,7 +7,7 @@ class Rook(Piece):
     w_image = pg.image.load('assets/pieces/wR.png')
     b_image = pg.image.load('assets/pieces/bR.png')
 
-    def possible_moves(self, board):
+    def possible_moves_f(self, board):
         index = 0
         y = self.pos[0]
         x = self.pos[1]
