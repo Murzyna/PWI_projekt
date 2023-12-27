@@ -50,8 +50,6 @@ class ChessBoard:
                 for j in range(8):
                     piece = ChessBoard.board[i][j]
                     if piece != 0:
-                        piece.possible_moves_f(ChessBoard.board)
-                        print(piece.possible_moves)
                         if piece.is_clicked() and ChessBoard.mouse_hold is False and piece.color == ChessBoard.turn:
                             self.piece_to_move = (piece, i, j)      # zapisywanie figury ktorą chcemy ruszyc
                             ChessBoard.mouse_hold = True
@@ -77,6 +75,9 @@ class ChessBoard:
                 ChessBoard.turn = "b"
             else:
                 ChessBoard.turn = "w"
+
+            piece_to_move.possible_moves_f(ChessBoard.board)
+            print(piece_to_move.possible_moves)
 
             self.piece_to_move = None
 
