@@ -26,6 +26,7 @@ class Knight(Piece):
 
         self.possible_moves = possible_moves_array[:count_moves]
 
+
     def attacks(self, board):
         y, x = self.pos
 
@@ -43,4 +44,4 @@ class Knight(Piece):
                 possible_attacks_array[count_moves] = [new_y, new_x]
                 count_moves += 1
 
-        self.possible_moves = possible_attacks_array[:count_moves]
+        self.possible_attacks = possible_attacks_array[:count_moves]

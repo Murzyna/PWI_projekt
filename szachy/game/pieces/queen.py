@@ -61,4 +61,4 @@ class Queen(Piece):
                 j += dx
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
-        self.possible_moves = possible_attacks_array[:count_moves]
+        self.possible_attacks = possible_attacks_array[:count_moves]

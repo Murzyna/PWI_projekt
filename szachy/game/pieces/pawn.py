@@ -62,7 +62,7 @@ class Pawn(Piece):
         self.possible_moves = possible_moves_array[:count_moves]
 
 
-    def attacts(self, board):
+    def attacks(self, board):
         y, x = self.pos
 
         max_possible_moves = 4  # Maksymalna liczba potencjalnych ruchów pionka
@@ -109,4 +109,4 @@ class Pawn(Piece):
                 count_moves += 1
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
-        self.possible_attacts = possible_moves_array[:count_moves]
+        self.possible_attacks = possible_moves_array[:count_moves]
