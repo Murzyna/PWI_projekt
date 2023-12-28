@@ -35,3 +35,4 @@ class King(Piece):
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
         self.possible_moves = possible_moves_array[:count_moves]
+        self.possible_attacks = possible_moves_array[:count_moves]

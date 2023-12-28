@@ -36,7 +36,8 @@ class Bishop(Piece):
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
         self.possible_moves = possible_moves_array[:count_moves]
 
-    def attacts(self, board):
+
+    def attacks(self, board):
         y, x = self.pos
 
         # Define the directions to check (diagonal)
@@ -62,4 +63,4 @@ class Bishop(Piece):
                 j += dx
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
-        self.possible_attacts = possible_moves_array[:count_moves]
+        self.possible_attacks = possible_moves_array[:count_moves]

@@ -113,15 +113,15 @@ class ChessBoard:
             if isinstance(piece, King):
                 piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
             else:
-                piece.possible_moves_f(ChessBoard.board)
-            for move in piece.possible_moves:
+                piece.attacks(ChessBoard.board)
+            for move in piece.possible_attacks:
                 self.w_attacked[move[0]][move[1]] = 1
         for piece in self.b_pieces:
             if isinstance(piece, King):
                 piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
             else:
-                piece.possible_moves_f(ChessBoard.board)
-            for move in piece.possible_moves:
+                piece.attacks(ChessBoard.board)
+            for move in piece.possible_attacks:
                 self.b_attacked[move[0]][move[1]] = 1
 
 
