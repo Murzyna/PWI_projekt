@@ -52,7 +52,7 @@ class ChessBoard:
             ChessBoard.mouse_hold = True
 
 
-        if self.piece_to_move is not None and ChessBoard.mouse_hold is False and self.piece_to_move[0].color == ChessBoard.turn:       # zmiana pozycji figur
+        if self.piece_to_move is not None and self.piece_to_move[0] != 0 and ChessBoard.mouse_hold is False and self.piece_to_move[0].color == ChessBoard.turn:       # zmiana pozycji figur
             piece_to_move = self.piece_to_move[0]
             old_pos_i = self.piece_to_move[1]
             old_pos_j = self.piece_to_move[2]
