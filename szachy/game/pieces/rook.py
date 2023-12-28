@@ -35,3 +35,30 @@ class Rook(Piece):
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
         self.possible_moves = possible_moves_array[:count_moves]
+
+    def attacks(self, board):
+        y, x = self.pos
+
+        # Define the directions to check (vertical and horizontal)
+        directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+        max_possible_moves = 14  # Maksymalna liczba potencjalnych ruchów wieży
+        possible_attacks_array = np.full((max_possible_moves, 2), -1, dtype=int)
+
+        count_moves = 0
+        for dy, dx in directions:
+            i, j = y + dy, x + dx
+            while 0 <= i < 8 and 0 <= j < 8:
+                if board[i][j] == 0:
+                    possible_attacks_array[count_moves] = [i, j]
+                    count_moves += 1
+                else:
+                    possible_attacks_array[count_moves] = [i, j]
+                    count_moves += 1
+                    break
+                i += dy
+                j += dx
+
+        # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
+        self.possible_moves = possible_attacks_array[:count_moves]
+

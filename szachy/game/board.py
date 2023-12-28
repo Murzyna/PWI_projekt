@@ -48,7 +48,7 @@ class ChessBoard:
 
     def move_piece(self):
         self.add_attacked()
-        print(self.w_attacked, self.b_attacked)
+        print(f"{self.w_attacked}, {self.b_attacked}")
 
         if pg.mouse.get_pressed()[0] is False:
             ChessBoard.mouse_hold = False
