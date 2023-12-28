@@ -1,4 +1,5 @@
 import pygame as pg
+from pygame import mixer
 import numpy as np
 from PWI_projekt.szachy.game.pieces.pawn import *
 from PWI_projekt.szachy.game.pieces.rook import *
@@ -9,7 +10,7 @@ from PWI_projekt.szachy.game.pieces.knight import *
 from PWI_projekt.szachy.game.base_piece import *
 from PWI_projekt.szachy.game.game import *
 
-
+mixer.init()
 
 class ChessBoard:
 
@@ -87,6 +88,15 @@ class ChessBoard:
             if old_pos_i == new_pos_i and old_pos_j == new_pos_j:
                 self.piece_to_move = None
                 return 0
+
+            if ChessBoard.board[new_pos_i][new_pos_j] != 0:
+                mixer.music.load('assets/sounds/capture.mp3')
+                mixer.music.set_volume(0.2)
+                mixer.music.play()
+            else:
+                mixer.music.load('assets/sounds/move.mp3')
+                mixer.music.set_volume(0.2)
+                mixer.music.play()
 
             # Zamiana pozycji ruch
             piece_to_move.pos = (new_pos_i, new_pos_j)
