@@ -7,7 +7,7 @@ class King(Piece):
     w_image = pg.image.load('assets/pieces/wK.png')
     b_image = pg.image.load('assets/pieces/bK.png')
 
-    def possible_moves_f(self, board):
+    def possible_moves_f(self, board, w_attacked, b_attacked):
         y, x = self.pos
 
         # Define the directions to check (vertical, horizontal, and diagonal)
@@ -22,8 +22,16 @@ class King(Piece):
             i, j = y + dy, x + dx
             if 0 <= i < 8 and 0 <= j < 8:
                 if board[i][j] == 0 or board[i][j].color != self.color:
-                    possible_moves_array[count_moves] = [i, j]
-                    count_moves += 1
+                    # Sprawdzenie, czy pole nie znajduje się na liście atakowanych pól
+                    if self.color == "w":
+                        if b_attacked[i][j] == 0:
+                            possible_moves_array[count_moves] = [i, j]
+                            count_moves += 1
+
+                    if self.color == "b":
+                        if w_attacked[i][j] == 0:
+                            possible_moves_array[count_moves] = [i, j]
+                            count_moves += 1
 
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
         self.possible_moves = possible_moves_array[:count_moves]

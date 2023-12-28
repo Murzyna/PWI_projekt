@@ -12,11 +12,10 @@ from PWI_projekt.szachy.game.game import *
 
 
 class ChessBoard:
-    attacked_w = np.zeros((8, 8), dtype=int)
-    attacked_b = np.zeros((8, 8), dtype=int)
+
     piece_size = 65
     turn = "w"
-    board = np.zeros((8,8), classmethod)
+    board = np.zeros((8,8), dtype=classmethod)
 
     def __init__(self, size, colors, screen):
         self.size = size
@@ -25,10 +24,11 @@ class ChessBoard:
         self.screen = screen
         self.square_size = screen.get_width()//8
         self.piece_to_move = None
-        self.w_pieces = np.zeros(16, dtype=classmethod)
-        self.b_pieces = np.zeros(16, dtype=classmethod)
-        self.w_attacked_pos = np.zeros((8, 8), dtype=int)
-        self.b_attacked_pos = np.zeros((8, 8), dtype=int)
+        self.w_pieces = np.array([ChessBoard.board[i][j] for i in range(2) for j in range(8)])
+        self.b_pieces = np.array([ChessBoard.board[i][j] for i in range(6,8) for j in range(8)])
+        self.w_attacked = np.zeros((8, 8), dtype=int)
+        self.b_attacked = np.zeros((8, 8), dtype=int)
+
 
     def draw_board(self):
         for i in range(8):
@@ -47,6 +47,9 @@ class ChessBoard:
 
 
     def move_piece(self):
+        self.add_attacked()
+        print(self.w_attacked, self.b_attacked)
+
         if pg.mouse.get_pressed()[0] is False:
             ChessBoard.mouse_hold = False
 
@@ -81,27 +84,43 @@ class ChessBoard:
                 self.piece_to_move = None
                 return 0
 
-
+            # Zamiana pozycji ruch
             piece_to_move.pos = (new_pos_i, new_pos_j)
             ChessBoard.board[old_pos_i][old_pos_j] = 0
             ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
+
+            if isinstance(piece_to_move, King) and piece_to_move.color == "w":
+                ChessBoard.w_king_pos = (piece_to_move.pos[0], piece_to_move.pos[1])
+            elif isinstance(piece_to_move, King):
+                ChessBoard.b_king_pos = (piece_to_move.pos[0], piece_to_move.pos[1])
+
+
             if ChessBoard.turn == "w":
                 ChessBoard.turn = "b"
             else:
                 ChessBoard.turn = "w"
-
-
             self.piece_to_move = None
 
+
     def add_attacked(self):
-        self.attacked_w.fill(0)
-        self.attacked_b.fill(0)
+        self.w_attacked.fill(-1)
+        self.b_attacked.fill(-1)
         for piece in self.w_pieces:
+            if isinstance(piece, King):
+                piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+            else:
+                piece.possible_moves_f(ChessBoard.board)
             for move in piece.possible_moves:
-                self.attacked_w[move[0]][move[1]] = 1
+                self.w_attacked[move[0]][move[1]] = 1
         for piece in self.b_pieces:
+            if isinstance(piece, King):
+                piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+            else:
+                piece.possible_moves_f(ChessBoard.board)
             for move in piece.possible_moves:
-                self.attacked_b[move[0]][move[1]] = 1
+                self.b_attacked[move[0]][move[1]] = 1
+
+
 
 
     board[7, 4] = King("w", (7, 4), piece_size)
@@ -137,5 +156,8 @@ class ChessBoard:
     board[1, 6] = Pawn("b", (1, 6), piece_size)
     board[1, 7] = Pawn("b", (1, 7), piece_size)
     board[1, 0] = Pawn("b", (1, 0), piece_size)
+
+    w_king_pos = (7, 4)
+    b_king_pos = (0, 4)
 
     mouse_hold = False
