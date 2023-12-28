@@ -67,9 +67,13 @@ class ChessBoard:
             new_pos_i = pg.mouse.get_pos()[1]//100
             new_pos_j = pg.mouse.get_pos()[0]//100
 
-
             new_pos = np.array([new_pos_i, new_pos_j])
-            piece_to_move.possible_moves_f(ChessBoard.board)
+
+            if isinstance(piece_to_move, King):
+                piece_to_move.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+            else:
+                piece_to_move.possible_moves_f(ChessBoard.board)
+
             a = 0
             for pos in piece_to_move.possible_moves:
                 if pos[0] == new_pos[0] and pos[1] == new_pos[1]:       # sprawdzainie czy to dobry ruch
