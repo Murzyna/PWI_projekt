@@ -40,7 +40,7 @@ class Knight(Piece):
 
         for i in range(8):
             new_x, new_y = x + rows[i], y + cols[i]
-            if 0 <= new_y < 8 and 8 > new_x >= 0 == board[new_y][new_x]:
+            if 0 <= new_x < 8 and 0 <= new_y < 8:
                 possible_attacks_array[count_moves] = [new_y, new_x]
                 count_moves += 1
 
