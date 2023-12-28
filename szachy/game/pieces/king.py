@@ -24,12 +24,12 @@ class King(Piece):
                 if board[i][j] == 0 or board[i][j].color != self.color:
                     # Sprawdzenie, czy pole nie znajduje się na liście atakowanych pól
                     if self.color == "w":
-                        if b_attacked[i][j] == 1:
+                        if w_attacked[i][j] == -1:
                             possible_moves_array[count_moves] = [i, j]
                             count_moves += 1
 
                     if self.color == "b":
-                        if w_attacked[i][j] == 1:
+                        if b_attacked[i][j] == -1:
                             possible_moves_array[count_moves] = [i, j]
                             count_moves += 1
 

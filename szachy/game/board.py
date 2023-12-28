@@ -48,7 +48,6 @@ class ChessBoard:
 
     def move_piece(self):
         self.add_attacked()
-        print(f"{self.w_attacked}, {self.b_attacked}")
 
         if pg.mouse.get_pressed()[0] is False:
             ChessBoard.mouse_hold = False
@@ -61,6 +60,7 @@ class ChessBoard:
 
 
         if self.piece_to_move is not None and self.piece_to_move[0] != 0 and ChessBoard.mouse_hold is False and self.piece_to_move[0].color == ChessBoard.turn:       # zmiana pozycji figur
+            print(f"{self.w_attacked}, {self.b_attacked}")
             piece_to_move = self.piece_to_move[0]
             old_pos_i = self.piece_to_move[1]
             old_pos_j = self.piece_to_move[2]
