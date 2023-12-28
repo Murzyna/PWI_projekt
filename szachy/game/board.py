@@ -15,7 +15,7 @@ class ChessBoard:
 
     piece_size = 65
     turn = "w"
-    board = np.zeros((8,8), classmethod)
+    board = np.zeros((8,8), dtype=classmethod)
 
     def __init__(self, size, colors, screen):
         self.size = size
@@ -24,6 +24,12 @@ class ChessBoard:
         self.screen = screen
         self.square_size = screen.get_width()//8
         self.piece_to_move = None
+        self.w_pieces = np.zeros(16, dtype=classmethod)
+        self.b_pieces = np.zeros(16, dtype=classmethod)
+        self.w_attacked_pos = np.zeros((8, 8), dtype=int)
+        self.b_attacked_pos = np.zeros((8, 8), dtype=int)
+
+
 
     def draw_board(self):
         for i in range(8):
@@ -80,6 +86,13 @@ class ChessBoard:
             piece_to_move.pos = (new_pos_i, new_pos_j)
             ChessBoard.board[old_pos_i][old_pos_j] = 0
             ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
+
+            if isinstance(piece_to_move, King) and piece_to_move.color == "w":
+                ChessBoard.w_king = piece_to_move
+            elif isinstance(piece_to_move, King):
+                ChessBoard.b_king = piece_to_move
+
+
             if ChessBoard.turn == "w":
                 ChessBoard.turn = "b"
             else:
@@ -87,8 +100,6 @@ class ChessBoard:
 
 
             self.piece_to_move = None
-
-
 
 
 
@@ -125,5 +136,8 @@ class ChessBoard:
     board[1, 6] = Pawn("b", (1, 6), piece_size)
     board[1, 7] = Pawn("b", (1, 7), piece_size)
     board[1, 0] = Pawn("b", (1, 0), piece_size)
+
+    w_king = board[7][4]
+    b_king = board[0][4]
 
     mouse_hold = False
