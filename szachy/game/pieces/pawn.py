@@ -74,37 +74,21 @@ class Pawn(Piece):
             self.first_move = False
 
         if self.color == "w":
-            if self.first_move and board[y-2][x] == 0:
-                possible_moves_array[count_moves] = [y-2, x]
-                count_moves += 1
-
-            if board[y-1][x] == 0:              # ruch do przodu
-                possible_moves_array[count_moves] = [y-1, x]
-                count_moves += 1
-
-            if 0<y<8 and 0<=x<7 and board[y-1][x+1]:       # bicie na ukos
+            if 0<y<8 and 0<=x<7:       # bicie na ukos
                 possible_moves_array[count_moves] = [y-1, x+1]
                 count_moves += 1
 
-            if 0<y<8 and 1<x<=8 and board[y-1][x-1] != 0:       # bicie na ukos
+            if 0<y<8 and 1<x<=8:       # bicie na ukos
                 possible_moves_array[count_moves] = [y-1, x-1]
                 count_moves += 1
 
 
         if self.color == "b":
-            if self.first_move and board[y+2][x] == 0:
-                possible_moves_array[count_moves] = [y+2, x]
-                count_moves += 1
-
-            if board[y+1][x] == 0:              # ruch do przodu
-                possible_moves_array[count_moves] = [y+1, x]
-                count_moves += 1
-
-            if 0<y<8 and 0<=x<7 and board[y+1][x+1] != 0:       # bicie na ukos
+            if 0<y<8 and 0<=x<7:       # bicie na ukos
                 possible_moves_array[count_moves] = [y+1, x+1]
                 count_moves += 1
 
-            if 0<y<8 and 1<x<=8 and board[y+1][x-1] != 0:       # bicie na ukos
+            if 0<y<8 and 1<x<=8:       # bicie na ukos
                 possible_moves_array[count_moves] = [y+1, x-1]
                 count_moves += 1
 
