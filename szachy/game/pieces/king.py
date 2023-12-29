@@ -7,6 +7,10 @@ class King(Piece):
     w_image = pg.image.load('assets/pieces/wK.png')
     b_image = pg.image.load('assets/pieces/bK.png')
 
+    def __init__(self, color, pos, size):
+        super(King, self).__init__(color, pos, size)
+        self.is_checked = False
+
     def possible_moves_f(self, board, w_attacked, b_attacked):
         y, x = self.pos
 
@@ -36,3 +40,16 @@ class King(Piece):
         # Obcięcie tablicy do rzeczywistej liczby możliwych ruchów
         self.possible_moves = possible_moves_array[:count_moves]
         self.possible_attacks = possible_moves_array[:count_moves]
+
+
+    def check(self, w_attacked, b_attacked):
+        if self.color == "w":
+            if b_attacked[self.pos[0]][self.pos[1]] == 1:
+                self.is_checked = True
+                return True
+        if self.color == "b":
+            if w_attacked[self.pos[0]][self.pos[1]] == 1:
+                self.is_checked = True
+                return True
+        self.is_checked = False
+        return False
