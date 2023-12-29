@@ -1,6 +1,7 @@
 import numpy as np
 import pygame as pg
 from PWI_projekt.szachy.game.base_piece import *
+from PWI_projekt.szachy.game.pieces.king import *
 
 
 class Rook(Piece):
@@ -53,9 +54,13 @@ class Rook(Piece):
                     possible_attacks_array[count_moves] = [i, j]
                     count_moves += 1
                 else:
-                    possible_attacks_array[count_moves] = [i, j]
-                    count_moves += 1
-                    break
+                    if isinstance(board[i][j], King) and board[i][j].color != self.color:
+                        possible_attacks_array[count_moves] = [i, j]
+                        count_moves += 1
+                    else:
+                        possible_attacks_array[count_moves] = [i, j]
+                        count_moves += 1
+                        break
                 i += dy
                 j += dx
 
