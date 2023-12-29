@@ -12,6 +12,7 @@ from PWI_projekt.szachy.game.game import *
 
 mixer.init()
 
+
 class ChessBoard:
 
     piece_size = 65
@@ -25,8 +26,6 @@ class ChessBoard:
         self.screen = screen
         self.square_size = screen.get_width()//8
         self.piece_to_move = None
-        self.w_pieces = np.array([ChessBoard.board[i][j] for i in range(2) for j in range(8)])
-        self.b_pieces = np.array([ChessBoard.board[i][j] for i in range(6,8) for j in range(8)])
         self.w_attacked = np.zeros((8, 8), dtype=int)
         self.b_attacked = np.zeros((8, 8), dtype=int)
 
@@ -89,6 +88,14 @@ class ChessBoard:
                 self.piece_to_move = None
                 return 0
 
+
+            if ChessBoard.turn == "w":
+                ChessBoard.turn = "b"
+            else:
+                ChessBoard.turn = "w"
+            self.piece_to_move = None
+
+            # Dźwięk
             if ChessBoard.board[new_pos_i][new_pos_j] != 0:
                 mixer.music.load('assets/sounds/capture.mp3')
                 mixer.music.set_volume(0.2)
@@ -103,36 +110,29 @@ class ChessBoard:
             ChessBoard.board[old_pos_i][old_pos_j] = 0
             ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
 
-            if isinstance(piece_to_move, King) and piece_to_move.color == "w":
-                ChessBoard.w_king_pos = (piece_to_move.pos[0], piece_to_move.pos[1])
-            elif isinstance(piece_to_move, King):
-                ChessBoard.b_king_pos = (piece_to_move.pos[0], piece_to_move.pos[1])
-
-
-            if ChessBoard.turn == "w":
-                ChessBoard.turn = "b"
-            else:
-                ChessBoard.turn = "w"
-            self.piece_to_move = None
-
 
     def add_attacked(self):
         self.w_attacked.fill(-1)
         self.b_attacked.fill(-1)
-        for piece in self.w_pieces:
-            if isinstance(piece, King):
-                piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
-            else:
-                piece.attacks(ChessBoard.board)
-            for move in piece.possible_attacks:
-                self.w_attacked[move[0]][move[1]] = 1
-        for piece in self.b_pieces:
-            if isinstance(piece, King):
-                piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
-            else:
-                piece.attacks(ChessBoard.board)
-            for move in piece.possible_attacks:
-                self.b_attacked[move[0]][move[1]] = 1
+        for i in range(8):
+            for j in range(8):
+                piece = ChessBoard.board[i][j]
+                if piece == 0:
+                    pass
+                elif piece.color == "w":
+                    if isinstance(piece, King):
+                        piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+                    else:
+                        piece.attacks(ChessBoard.board)
+                    for move in piece.possible_attacks:
+                        self.w_attacked[move[0]][move[1]] = 1
+                elif piece.color == "b":
+                    if isinstance(piece, King):
+                        piece.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+                    else:
+                        piece.attacks(ChessBoard.board)
+                    for move in piece.possible_attacks:
+                        self.b_attacked[move[0]][move[1]] = 1
 
 
 
