@@ -47,7 +47,6 @@ class ChessBoard:
 
 
     def move_piece(self):
-        self.add_attacked()
 
         if pg.mouse.get_pressed()[0] is False:
             ChessBoard.mouse_hold = False
@@ -60,7 +59,6 @@ class ChessBoard:
 
 
         if self.piece_to_move is not None and self.piece_to_move[0] != 0 and ChessBoard.mouse_hold is False and self.piece_to_move[0].color == ChessBoard.turn:       # zmiana pozycji figur
-            print(f"{self.w_attacked}, {self.b_attacked}")
             piece_to_move = self.piece_to_move[0]
             old_pos_i = self.piece_to_move[1]
             old_pos_j = self.piece_to_move[2]
@@ -74,6 +72,7 @@ class ChessBoard:
             else:
                 piece_to_move.possible_moves_f(ChessBoard.board)
 
+
             a = 0
             for pos in piece_to_move.possible_moves:
                 if pos[0] == new_pos[0] and pos[1] == new_pos[1]:       # sprawdzainie czy to dobry ruch
@@ -83,17 +82,14 @@ class ChessBoard:
                 self.piece_to_move = None
                 return 0
 
-
             if old_pos_i == new_pos_i and old_pos_j == new_pos_j:
                 self.piece_to_move = None
                 return 0
 
-
-            if ChessBoard.turn == "w":
-                ChessBoard.turn = "b"
-            else:
-                ChessBoard.turn = "w"
-            self.piece_to_move = None
+            if isinstance(piece_to_move, King) and piece_to_move.color == "w":
+                ChessBoard.w_king_pos = (new_pos_i, new_pos_j)
+            elif isinstance(piece_to_move, King) and piece_to_move.color == "b":
+                ChessBoard.b_king_pos = (new_pos_i, new_pos_j)
 
             # Dźwięk
             if ChessBoard.board[new_pos_i][new_pos_j] != 0:
@@ -106,9 +102,40 @@ class ChessBoard:
                 mixer.music.play()
 
             # Zamiana pozycji ruch
+            attacked_piece = ChessBoard.board[new_pos_i, new_pos_j]
             piece_to_move.pos = (new_pos_i, new_pos_j)
             ChessBoard.board[old_pos_i][old_pos_j] = 0
             ChessBoard.board[new_pos_i][new_pos_j] = piece_to_move
+
+            self.add_attacked()
+
+            b_king = ChessBoard.board[ChessBoard.b_king_pos[0]][ChessBoard.b_king_pos[1]]
+            w_king = ChessBoard.board[ChessBoard.w_king_pos[0]][ChessBoard.w_king_pos[1]]
+            b_king.check(self.w_attacked, self.b_attacked)
+            w_king.check(self.w_attacked, self.b_attacked)
+
+            # Zmiana kolejki, oraz sprawdzanie czy jest szach
+            if ChessBoard.turn == "w":
+                if w_king.is_checked is True and w_king.check(self.w_attacked, self.b_attacked):
+                    piece_to_move.pos = (old_pos_i, old_pos_j)
+                    ChessBoard.board[old_pos_i][old_pos_j] = piece_to_move
+                    ChessBoard.board[new_pos_i][new_pos_j] = attacked_piece     # Powrót do pozycji przed posunieciem bo bylo zle
+                else:
+                    ChessBoard.turn = "b"
+
+            else:
+                if b_king.is_checked is True and b_king.check(self.w_attacked, self.b_attacked):
+                    piece_to_move.pos = (old_pos_i, old_pos_j)
+                    ChessBoard.board[old_pos_i][old_pos_j] = piece_to_move
+                    ChessBoard.board[new_pos_i][new_pos_j] = attacked_piece     # Powrót do pozycji przed posunieciem bo bylo zle
+                else:
+                    ChessBoard.turn = "w"
+
+
+
+            print(f"{w_king.is_checked}, {b_king.is_checked}")
+
+            self.piece_to_move = None
 
 
     def add_attacked(self):
@@ -133,7 +160,6 @@ class ChessBoard:
                         piece.attacks(ChessBoard.board)
                     for move in piece.possible_attacks:
                         self.b_attacked[move[0]][move[1]] = 1
-
 
 
 
