@@ -113,6 +113,14 @@ class ChessBoard:
             w_king = ChessBoard.board[ChessBoard.w_king_pos[0]][ChessBoard.w_king_pos[1]]
             b_king.check(self.w_attacked, self.b_attacked)
             w_king.check(self.w_attacked, self.b_attacked)
+            if (w_king.is_checked == True):
+                 mixer.music.load('assets/sounds/check.mp3')
+                 mixer.music.set_volume(0.2)
+                 mixer.music.play()
+            if (b_king.is_checked == True):
+                 mixer.music.load('assets/sounds/check.mp3')
+                 mixer.music.set_volume(0.2)
+                 mixer.music.play()
 
             # Zmiana kolejki, oraz sprawdzanie czy jest szach
             if ChessBoard.turn == "w":
