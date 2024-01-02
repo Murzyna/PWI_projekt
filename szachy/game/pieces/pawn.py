@@ -36,7 +36,7 @@ class Pawn(Piece):
                 possible_moves_array[count_moves] = [y-1, x+1]
                 count_moves += 1
 
-            if 0<y<8 and 1<x<=8 and board[y-1][x-1] != 0 and board[y-1][x-1].color != self.color:       # bicie na ukos
+            if 0<y<8 and 0<x<=8 and board[y-1][x-1] != 0 and board[y-1][x-1].color != self.color:       # bicie na ukos
                 possible_moves_array[count_moves] = [y-1, x-1]
                 count_moves += 1
 
@@ -54,7 +54,7 @@ class Pawn(Piece):
                 possible_moves_array[count_moves] = [y+1, x+1]
                 count_moves += 1
 
-            if 0<y<8 and 1<x<=8 and board[y+1][x-1] != 0 and board[y+1][x-1].color != self.color:       # bicie na ukos
+            if 0<y<8 and 0<x<8 and board[y+1][x-1] != 0 and board[y+1][x-1].color != self.color:       # bicie na ukos
                 possible_moves_array[count_moves] = [y+1, x-1]
                 count_moves += 1
 
