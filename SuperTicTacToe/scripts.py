@@ -2,6 +2,11 @@ import pygame
 import math
 import time, sys
 from variables import SCREEN, O_IMG, X_IMG
+from pygame import mixer
+mixer.init()
+part_win_sound = mixer.Sound('sounds/part_win.mp3')
+player_move_sound = mixer.Sound('sounds/player_move.mp3')
+total_win_sound = mixer.Sound('sounds/total_win.mp3')
 
 #list that specifies whether you can put any more X's or O's to the specific sub_board, it states False if there is a winner there or a draw
 is_playable = [[True, True, True], [True, True, True], [True, True, True]]
@@ -152,6 +157,7 @@ def render_board(board, graphical_board, next_move):
         next_move_rect = pygame.Surface((180, 180))
         next_move_rect.set_alpha(80)
         next_move_rect.fill((0,255,0))
+        player_move_sound.play()
         SCREEN.blit(next_move_rect, (next_move[0]*200 + 10, next_move[1]*200+200 + 10))
 
 
@@ -187,6 +193,7 @@ def add_XO(board, graphical_board, to_move, next_move):
                     color = (44, 143, 192)
                 else:
                     color = (223, 0, 39)
+                part_win_sound.play()
                 winning_text(win_text, color)
                 SCREEN.blit(screen_look, (0, 0))
                 pygame.display.update()
@@ -201,6 +208,7 @@ def add_XO(board, graphical_board, to_move, next_move):
                     color = (44, 143, 192)
                 else:
                     color = (223, 0, 39)
+                total_win_sound.play()
                 winning_text(win_text, color)
                 SCREEN.blit(screen_look, (0, 0))
 
