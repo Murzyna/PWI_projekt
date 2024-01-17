@@ -27,7 +27,7 @@ class OtherBot():
                 if board[next_move[1]][next_move[0]][i][j] == to_move and board[next_move[1]][next_move[0]][i][j] != other:
                     wyn+=1
                 else:
-                    maybe = board[next_move[1]][next_move[0]][i][j]
+                    maybe = (next_move[0], next_move[1], j, i)
             if wyn == 2:
                 return maybe
         
@@ -38,7 +38,7 @@ class OtherBot():
                 if board[next_move[1]][next_move[0]][j][i] == to_move and board[next_move[1]][next_move[0]][j][i] != other:
                     wyn+=1
                 else:
-                    maybe = board[next_move[1]][next_move[0]][j][i]
+                    maybe = (next_move[0], next_move[1], i, j)
             if wyn == 2:
                 return maybe
         
@@ -50,7 +50,7 @@ class OtherBot():
                     if board[next_move[1]][next_move[0]][i][j] == to_move and board[next_move[1]][next_move[0]][i][j] != other:
                         wyn+=1
                     else:
-                        maybe = board[next_move[1]][next_move[0]][i][j]
+                        maybe = (next_move[0], next_move[1], j, i)
         if wyn == 2:
             return maybe
                 
@@ -61,7 +61,7 @@ class OtherBot():
                     if board[next_move[1]][next_move[0]][i][j] == to_move and board[next_move[1]][next_move[0]][i][j] != other:
                         wyn+=1
                     else:
-                        maybe = board[next_move[1]][next_move[0]][i][j]
+                        maybe = (next_move[0], next_move[1], j, i)
         if wyn == 2:
             return maybe
         
@@ -69,5 +69,5 @@ class OtherBot():
         for i in range(3):
             for j in range(3):
                 if board[next_move[1]][next_move[0]][i][j]!='X' and board[next_move[1]][next_move[0]][i][j]!='O':
-                    potential_sub.append(([next_move[1]][next_move[0]][i][j]))
+                    potential_sub.append((next_move[0], next_move[1], j, i))
         return random.choice(potential_sub)
