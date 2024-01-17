@@ -18,5 +18,5 @@ class RandomBot():
         for i in range(3):
             for j in range(3):
                 if board[next_move[1]][next_move[0]][i][j]!='X' and board[next_move[1]][next_move[0]][i][j]!='O':
-                    potential_sub.append(board[next_move[1]][next_move[0]][i][j])
+                    potential_sub.append(next_move[0], next_move[1], j, i)
         return random.choice(potential_sub)
