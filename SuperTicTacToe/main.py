@@ -1,6 +1,6 @@
 import pygame
 import sys 
-from scripts import add_XO, mark_draws
+from scripts import add_XO, mark_draws, small_win_board_change
 from variables import SCREEN, FONT, O_IMG, X_IMG, BG_COLOR, board, graphical_board
 
 
@@ -43,6 +43,7 @@ if __name__ == "__main__":
                     SCREEN.blit(textX, textRectX)
                 else:
                     SCREEN.blit(textO, textRectO)
+                small_win_board_change()
                 mark_draws(board) #we want the red square to stay in its place until end of the game, thats why this function is called in the main game loop
         pygame.display.flip()
         
