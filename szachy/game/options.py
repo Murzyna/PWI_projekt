@@ -1,6 +1,6 @@
 import pygame as pg
 import sys
-#komentarz
+
 class Menu:
     def __init__(self):
         pg.init()
@@ -12,8 +12,8 @@ class Menu:
 
         self.clock = pg.time.Clock()
 
-        self.font_heading = pg.font.Font(None, 72)
-        self.font_options = pg.font.Font(None, 48)
+        self.font_heading = pg.font.Font(None, 150)
+        self.font_options = pg.font.Font(None, 80)
         self.heading = self.font_heading.render("Chess Game", True, (173, 216, 230))
 
         self.options = ["Player vs Player", "Player vs Bot", "Bot vs Bot"]
