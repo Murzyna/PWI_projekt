@@ -12,7 +12,6 @@ from PWI_projekt.szachy.game.base_piece import *
 from PWI_projekt.szachy.game.game import *
 import random
 
-
 class DumbBot:
     def __init__(self, color, board):
         self.color = color

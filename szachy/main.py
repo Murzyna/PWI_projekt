@@ -10,7 +10,6 @@ from game.smart_bot import *
 
 pg.init()
 
-
 def main():
     menu = Menu()
     selected_option = menu.run()
