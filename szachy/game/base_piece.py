@@ -12,6 +12,7 @@ class Piece:
         self.size = size
         self.possible_moves = None
         self.possible_attacks = None
+        self.was_moved = False
 
 
     def draw_piece(self, screen, w_image, b_image):

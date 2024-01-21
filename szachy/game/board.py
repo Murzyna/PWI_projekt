@@ -69,9 +69,48 @@ class ChessBoard:
 
             if isinstance(piece_to_move, King):
                 piece_to_move.possible_moves_f(ChessBoard.board, self.w_attacked, self.b_attacked)
+                if piece_to_move.can_castling(self.board, self.w_attacked, self.b_attacked):  # Roszada
+                    if piece_to_move.color == "w":
+                        if new_pos_i == 7 and new_pos_j == 6:
+                            self.board[old_pos_i][old_pos_j] = 0
+                            self.board[new_pos_i][new_pos_j] = piece_to_move
+                            self.board[7][5] = self.board[7][7]
+                            self.board[7][7] = 0
+                            self.board[7][5].pos = [7, 5]
+                            self.board[7][6].pos = [7, 6]
+                        if new_pos_i == 7 and new_pos_j == 2:
+                            self.board[old_pos_i][old_pos_j] = 0
+                            self.board[new_pos_i][new_pos_j] = piece_to_move
+                            self.board[7][3] = self.board[7][0]
+                            self.board[7][0] = 0
+                            self.board[7][3].pos = [7, 3]
+                            self.board[7][2].pos = [7, 2]
+                        ChessBoard.w_king_pos = (new_pos_i, new_pos_j)
+                        self.board[ChessBoard.w_king_pos[0], ChessBoard.w_king_pos[1]].was_moved = True
+                        ChessBoard.turn = "b"
+                    elif piece_to_move.color == "b":
+                        if new_pos_i == 0 and new_pos_j == 6:
+                            self.board[old_pos_i][old_pos_j] = 0
+                            self.board[new_pos_i][new_pos_j] = piece_to_move
+                            self.board[0][5] = self.board[0][7]
+                            self.board[0][7] = 0
+                            self.board[0][5].pos = [0, 5]
+                            self.board[0][6].pos = [0, 6]
+                        if new_pos_i == 0 and new_pos_j == 2:
+                            self.board[old_pos_i][old_pos_j] = 0
+                            self.board[new_pos_i][new_pos_j] = piece_to_move
+                            self.board[0][3] = self.board[0][0]
+                            self.board[0][0] = 0
+                            self.board[0][3].pos = [0, 3]
+                            self.board[0][2].pos = [0, 2]
+                        ChessBoard.b_king_pos = (new_pos_i, new_pos_j)
+                        self.board[ChessBoard.b_king_pos[0], ChessBoard.b_king_pos[1]].was_moved = True
+                        ChessBoard.turn = "w"
+                    print(self.turn)
+                    self.piece_to_move = None
+                    return
             else:
                 piece_to_move.possible_moves_f(ChessBoard.board)
-
 
             a = 0
             for pos in piece_to_move.possible_moves:
