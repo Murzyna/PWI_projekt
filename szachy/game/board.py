@@ -364,7 +364,7 @@ class ChessBoard:
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
 
-                    if ChessBoard.board[new_pos_i][new_pos_j] != 0:
+                    elif ChessBoard.board[new_pos_i][new_pos_j] != 0:
                         mixer.music.load('assets/sounds/capture.mp3')
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
@@ -374,9 +374,7 @@ class ChessBoard:
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
 
-                    ChessBoard.turn = "w"
-
-
+                    ChessBoard.turn = "b"
 
 
             else:
@@ -385,7 +383,6 @@ class ChessBoard:
                     ChessBoard.board[old_pos_i][old_pos_j] = piece_to_move
                     ChessBoard.board[new_pos_i][new_pos_j] = attacked_piece     # Powrót do pozycji przed posunieciem bo bylo zle
                 else:
-                    ChessBoard.turn = "w"
 
                     if (b_king.is_checked == True):
                         mixer.music.load('assets/sounds/check.mp3')
@@ -396,7 +393,6 @@ class ChessBoard:
                         mixer.music.load('assets/sounds/capture.mp3')
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
-
 
                     else:
                         mixer.music.load('assets/sounds/move.mp3')

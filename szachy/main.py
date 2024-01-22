@@ -41,49 +41,16 @@ def main():
 
 
 
-    elif selected_option == "Bot vs Bot":               #DumbBot przeciwko SmartBot
-        bot_white = SmartBot("w", board)
-        bot_black = DumbBot("b", board)
-
-        while True:
-            for event in pg.event.get():
-                if event.type == pg.QUIT:
-                    pg.quit()
-                    break
-
-            if board.turn == "w":
-                bot_move = bot_white.get_smart_move(board.board)
-            else:
-                bot_move = bot_black.get_random_move(board.board)
-
-            if bot_move is not None:
-                screen.fill((0, 0, 0))
-                board.draw_board()
-
-                start_pos, end_pos = bot_move
-
-                board.move_piece_bot(start_pos, end_pos)
-                board.draw_pieces()
-
-                pg.display.flip()
-                sleep(0.8)
-
-
-
-
-
-
-
 
     elif "Player vs Bot" in selected_option:
 
         if "Dumb" in selected_option:
 
-                if "White" in selected_option:
-                    bot = DumbBot("b", board)
+            if "White" in selected_option:
+                bot = DumbBot("b", board)
 
-                else:
-                    bot = DumbBot("w", board)
+            else:
+                bot = DumbBot("w", board)
 
         else:
             if "White" in selected_option:
@@ -112,7 +79,6 @@ def main():
 
 
                 if bot_move != None:
-                    sleep(0.4)          #Żeby było widać skąd bot się rusza
                     screen.fill((0, 0, 0))
                     board.draw_board()
 
@@ -120,6 +86,8 @@ def main():
 
                     board.move_piece_bot(start_pos, end_pos)
                     board.draw_pieces()
+
+                    pg.display.flip()
 
 
 
