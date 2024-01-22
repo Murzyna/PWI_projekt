@@ -9,7 +9,7 @@ def main2():
     new_board = board
 
 
-    BOARD = pygame.image.load("SuperTicTacToe/assets/board.png").convert()
+    BOARD = pygame.image.load("assets/board.png").convert()
     BOARD = pygame.transform.scale(BOARD, (600, 600))
     BOARD.set_colorkey((255,255,255))
     
