@@ -16,11 +16,11 @@ class Menu:
         self.font_options = pg.font.Font(None, 80)
         self.heading = self.font_heading.render("Chess Game", True, (173, 216, 230))
 
-        self.options = ["Player vs Player", "Player vs Bot", "Bot vs Bot"]
+        self.options = ["Player vs Player", "Player vs Bot"]
         self.selected_option = None
 
     def draw_menu(self):
-        #Główne menu, zawierające nagłówek "Chess Game" oraz opcje gry: "Player vs Player", "Player vs Bot", "Bot vs Bot"
+        #Główne menu, zawierające nagłówek "Chess Game" oraz opcje gry: "Player vs Player", "Player vs Bot"
         self.screen.fill((0, 0, 0))
 
         heading_rect = self.heading.get_rect(center=(self.screen_width // 2, 80))
