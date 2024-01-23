@@ -109,7 +109,6 @@ class ChessBoard:
                         ChessBoard.b_king_pos = (new_pos_i, new_pos_j)
                         self.board[ChessBoard.b_king_pos[0], ChessBoard.b_king_pos[1]].was_moved = True
                         ChessBoard.turn = "w"
-                    print(self.turn)
                     self.piece_to_move = None
                     return
             else:
@@ -183,7 +182,6 @@ class ChessBoard:
 
 
 
-            print(f"{w_king.is_checked}, {b_king.is_checked}")
 
             self.piece_to_move = None
 
@@ -251,10 +249,6 @@ class ChessBoard:
     b_king_pos = (0, 4)
 
     mouse_hold = False
-
-
-
-
 
 
 
@@ -361,8 +355,5 @@ class ChessBoard:
                         mixer.music.play()
                     ChessBoard.turn = "w"
 
-
-
-            print(f"{w_king.is_checked}, {b_king.is_checked}")
 
             self.piece_to_move = None
