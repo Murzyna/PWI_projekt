@@ -2,7 +2,7 @@
 
 Group student project. It contains two playable pygame games - Chess and Super Tic Tac Toe. Both of them are in one interactive launcher.
 Games can be played both in pvp mode as well as vs bots, with selectable difficulties. You can customize the launcher, as well as 
-select soundtrack and volume etc. 
+select soundtrack and volume etc. Most of the assets were self made.
 
 ## Requirements
 
