@@ -315,6 +315,6 @@ class ChessBoard:
 
 
 
-            print(f"{w_king.is_checked}, {b_king.is_checked}")
+            #print(f"{w_king.is_checked}, {b_king.is_checked}")
 
             self.piece_to_move = None
