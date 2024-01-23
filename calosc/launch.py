@@ -145,11 +145,11 @@ def game_chess():
     while True:
         screen.blit(BG, (0,0))
         GAME_CHESS_MOUSE_POS = pygame.mouse.get_pos()
-        BACK_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
+        BACK_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 350), 
                                     text_input="BACK", font=get_font(50), base_color="Black", hovering_color="WHITE")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 500), 
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 450), 
                                     text_input="QUIT", font=get_font(50), base_color="Black", hovering_color="RED")
-        MULTIPLAYED_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 300), 
+        MULTIPLAYED_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 250), 
                                     text_input="PLAY", font=get_font(50), base_color="Black", hovering_color="WHITE")
         #SINGLEPLAYER_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 300), 
                                     #text_input="SINGLEPLAYER", font=get_font(50), base_color="Black", hovering_color="WHITE")
@@ -180,11 +180,11 @@ def game_super_tic_tac_toe():
     while True:
         screen.blit(BG, (0,0))
         GAME_TTT_MOUSE_POS = pygame.mouse.get_pos()
-        BACK_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 400), 
+        BACK_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 350), 
                                     text_input="BACK", font=get_font(50), base_color="Black", hovering_color="WHITE")
-        QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 500), 
+        QUIT_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 450), 
                                     text_input="QUIT", font=get_font(50), base_color="Black", hovering_color="RED")
-        MULTIPLAYED_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 300), 
+        MULTIPLAYED_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 250), 
                                     text_input="PLAY", font=get_font(50), base_color="Black", hovering_color="WHITE")
         #SINGLEPLAYER_BUTTON = Button(image=pygame.image.load("assets/Options Rect.png"), pos=(640, 300), 
                                     #text_input="SINGLEPLAYER", font=get_font(50), base_color="Black", hovering_color="WHITE")

@@ -9,7 +9,7 @@ from game.pieces.queen import *
 from game.pieces.bishop import *
 from game.pieces.knight import *
 from game.base_piece import *
-from game.game import *
+from game.game_file import *
 import random
 
 class DumbBot:

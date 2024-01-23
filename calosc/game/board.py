@@ -1,3 +1,6 @@
+import sys
+sys.path.append('/PWI_projekt/szachy')
+
 import pygame as pg
 from pygame import mixer
 import numpy as np
@@ -8,7 +11,7 @@ from game.pieces.queen import *
 from game.pieces.bishop import *
 from game.pieces.knight import *
 from game.base_piece import *
-from game.game import *
+from game.game_file import *
 
 mixer.init()
 

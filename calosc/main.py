@@ -1,11 +1,12 @@
 import pygame as pg
 import numpy as np
 from game.board import *
-from game.game import *
+from game.game_file import *
 from game.options import *
 from time import *
 from game.dumb_bot import *
 from game.smart_bot import *
+
 
 pg.init()
 
@@ -19,6 +20,7 @@ def main():
     white = (220, 230, 255)
     brown = (205, 133, 63)
     board = ChessBoard(screen_size, (white, brown), screen)
+
 
 
     if selected_option == "Player vs Player":

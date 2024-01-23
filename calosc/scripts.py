@@ -74,7 +74,7 @@ def small_win_board_change():
                 continue
 
             elif small_board_wins[j][i] == 'X':
-                X_IMG = pygame.image.load("SuperTicTacToe/assets/X.png")
+                X_IMG = pygame.image.load("assets/X.png")
                 X_IMG = pygame.transform.scale(X_IMG, (190, 190))
 
                 draw_rect = pygame.Surface((190, 190))
@@ -85,7 +85,7 @@ def small_win_board_change():
                 SCREEN.blit(X_IMG, (i * 200 + 5, j * 200 + 200 + 4))
 
             else:
-                O_IMG = pygame.image.load("SuperTicTacToe/assets/O2.png")
+                O_IMG = pygame.image.load("assets/O2.png")
                 O_IMG = pygame.transform.scale(O_IMG, (190, 190))
                 O_IMG.set_colorkey((255, 255, 255))
 
