@@ -255,7 +255,7 @@ class ChessBoard:
 
 
 
-        def move_piece_bot(self, start_pos, end_pos):          #move defined for all bots
+    def move_piece_bot(self, start_pos, end_pos):          #move defined for all bots
 
 
 
@@ -314,12 +314,12 @@ class ChessBoard:
 
             # Zmiana kolejki, oraz sprawdzanie czy jest szach
             if ChessBoard.turn == "w":
-                if w_king.is_checked is True and w_king.check(self.w_attacked, self.b_attacked):
+                if isinstance(w_king, King) and w_king.is_checked is True and w_king.check(self.w_attacked, self.b_attacked):
                     piece_to_move.pos = (old_pos_i, old_pos_j)
                     ChessBoard.board[old_pos_i][old_pos_j] = piece_to_move
                     ChessBoard.board[new_pos_i][new_pos_j] = attacked_piece     # Powrót do pozycji przed posunieciem bo bylo zle
                 else:
-                    if (w_king.is_checked == True):
+                    if isinstance(w_king, King) and (w_king.is_checked == True):
                         mixer.music.load('assets/sounds/check.mp3')
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
@@ -335,12 +335,12 @@ class ChessBoard:
                     ChessBoard.turn = "b"
 
             else:
-                if b_king.is_checked is True and b_king.check(self.w_attacked, self.b_attacked):
+                if isinstance(b_king, King) and b_king.is_checked is True and b_king.check(self.w_attacked, self.b_attacked):
                     piece_to_move.pos = (old_pos_i, old_pos_j)
                     ChessBoard.board[old_pos_i][old_pos_j] = piece_to_move
                     ChessBoard.board[new_pos_i][new_pos_j] = attacked_piece     # Powrót do pozycji przed posunieciem bo bylo zle
                 else:
-                    if (b_king.is_checked == True):
+                    if isinstance(b_king, King) and (b_king.is_checked == True):
                         mixer.music.load('assets/sounds/check.mp3')
                         mixer.music.set_volume(0.2)
                         mixer.music.play()
@@ -355,5 +355,8 @@ class ChessBoard:
                         mixer.music.play()
                     ChessBoard.turn = "w"
 
+
+
+            print(f"{w_king.is_checked}, {b_king.is_checked}")
 
             self.piece_to_move = None
