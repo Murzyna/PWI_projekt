@@ -1,7 +1,7 @@
 import numpy as np
 import pygame as pg
-from PWI_projekt.szachy.game.base_piece import *
-from PWI_projekt.szachy.game.pieces.king import *
+from game.base_piece import *
+from game.pieces.king import *
 
 
 class Bishop(Piece):

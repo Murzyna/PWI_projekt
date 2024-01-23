@@ -2,14 +2,14 @@ import random
 import pygame as pg
 from pygame import mixer
 import numpy as np
-from PWI_projekt.szachy.game.pieces.pawn import *
-from PWI_projekt.szachy.game.pieces.rook import *
-from PWI_projekt.szachy.game.pieces.king import *
-from PWI_projekt.szachy.game.pieces.queen import *
-from PWI_projekt.szachy.game.pieces.bishop import *
-from PWI_projekt.szachy.game.pieces.knight import *
-from PWI_projekt.szachy.game.base_piece import *
-from PWI_projekt.szachy.game.game import *
+from game.pieces.pawn import *
+from game.pieces.rook import *
+from game.pieces.king import *
+from game.pieces.queen import *
+from game.pieces.bishop import *
+from game.pieces.knight import *
+from game.base_piece import *
+from game.game_file import *
 import random
 
 class DumbBot:
