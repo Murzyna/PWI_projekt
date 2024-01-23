@@ -1,8 +1,9 @@
 import os
-current_dir = os.getcwd()
-new_path = os.path.join(current_dir, "gra")
-os.chdir(new_path)
-print(os.getcwd())
+if "gra" not in os.getcwd():
+    current_dir = os.getcwd()
+    new_path = os.path.join(current_dir, "gra")
+    os.chdir(new_path)
+    print(os.getcwd())
 import pygame, sys
 from buttonExtra import Button
 import main2
